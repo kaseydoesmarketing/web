@@ -8,7 +8,9 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:5020',
+        target: process.env.NODE_ENV === 'production' 
+          ? 'https://clonementorpro.onrender.com'
+          : 'http://localhost:5020',
         changeOrigin: true,
       }
     }
