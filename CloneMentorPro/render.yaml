@@ -21,7 +21,7 @@ services:
     region: oregon
     branch: main
     repo: https://github.com/kaseydoesmarketing/web
-    rootDir: ./
+    rootDir: ./CloneMentorPro
     disk:
       name: clonementorpro-disk
       mountPath: /tmp
