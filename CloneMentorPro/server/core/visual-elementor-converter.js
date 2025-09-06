@@ -67,9 +67,12 @@ class VisualElementorConverter {
     // CRITICAL FIX: Increased threshold from 25KB to 150KB for complex websites
     // Complex WordPress sites legitimately need larger templates to preserve content
     if (finalSize > 150000) {
+      console.log(`🔍 DEBUG: Template size ${finalSize} > 150000, calling smartCleanTemplate`);
       console.warn(`⚠️ LARGE TEMPLATE WARNING: ${Math.round(finalSize / 1024)}KB - Template is large but preserving content quality`);
       // Apply SMART cleaning instead of aggressive cleaning to preserve essential content
       return this.smartCleanTemplate(validatedTemplate);
+    } else {
+      console.log(`🔍 DEBUG: Template size ${finalSize} <= 150000, returning validatedTemplate as-is`);
     }
     
     return validatedTemplate;
@@ -1164,6 +1167,7 @@ class VisualElementorConverter {
 
   smartCleanTemplate(template) {
     console.log('🧹 SMART TEMPLATE CLEANING - Preserving content while removing bloat');
+    console.log(`🔍 DEBUG: smartCleanTemplate called with template size: ${JSON.stringify(template).length} bytes`);
     
     // Smart cleaning preserves essential content but removes bloat
     const smartCleaned = JSON.parse(JSON.stringify(template));
@@ -1221,6 +1225,7 @@ class VisualElementorConverter {
 
   aggressiveCleanTemplate(template) {
     console.log('🔥 EMERGENCY TEMPLATE CLEANING - Removing all bloat');
+    console.log(`🔍 DEBUG: aggressiveCleanTemplate called with template size: ${JSON.stringify(template).length} bytes`);
     
     // Create minimal template structure
     const minimalTemplate = {

@@ -58,3 +58,4 @@ pids/
 
 # Puppeteer downloads
 .local-chromium/
+.vercel
